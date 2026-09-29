@@ -15,6 +15,10 @@ def count_images(folder_path):
 # ============ count image per class ===================
 print('Train Normal:', count_images(os.path.join(TRAIN_DIR,'NORMAL')))
 print('Train Pneumonia:', count_images(os.path.join(TRAIN_DIR,'PNEUMONIA')))
+print('Test Normal:: ',count_images(os.path.join(TEST_DIR, 'NORMAL')))
+print('Test Pneumonia:: ', count_images(os.path.join(TEST_DIR, "PNEUMONIA")))
+print('VAl Normal:: ', count_images(os.path.join(VAL_DIR, 'NORMAL')))
+print('Val Pneumonia:: ', count_images(os.path.join(VAL_DIR, 'PNEUMONIA')))
     
 # ============ view one sample image form each class ===============   
 normal_files = os.listdir(os.path.join(TRAIN_DIR, 'NORMAL'))
@@ -41,24 +45,28 @@ print('PNEUMONIA image size:: ', img_pneumonia.size)
 plt.show()
 
 normal_size = [] # =============== list of all the sizes of normal pictures
+# =========== looping for size for all the normal images
 for filename in os.listdir(os.path.join(TRAIN_DIR, 'NORMAL')):
     image_path = os.path.join(TRAIN_DIR,'NORMAL', filename)
     img = Image.open(image_path)
     normal_size.append(img.size)
     
 pneumonia_size = [] # ============= list of all the sizes of pneumonia pictures 
+# ============= looping for size for all the pneumonia images
 for filename in os.listdir(os.path.join(TRAIN_DIR, 'PNEUMONIA')):
     image_path = os.path.join(TRAIN_DIR, 'PNEUMONIA', filename)
     img = Image.open(image_path)
     pneumonia_size.append(img.size)
     
-normal_modes = []
+normal_modes = [] #============ list of the color mode(grayscale/RGB) of every normal image
+# ================ looping for color mode of all normal image
 for filename in os.listdir(os.path.join(TRAIN_DIR, 'NORMAL')):
     image_path = os.path.join(TRAIN_DIR, 'NORMAL', filename)
     img = Image.open(image_path)
     normal_modes.append(img.mode)
     
-pneumonia_modes = []
+pneumonia_modes = [] #============ list of the color mode(grayscale/RGB) of every pneumonia image
+# ================ looping for color mode of all pneumonia image
 for filename in os.listdir(os.path.join(TRAIN_DIR,'PNEUMONIA')):
     image_path = os.path.join(TRAIN_DIR, 'PNEUMONIA', filename)
     img = Image.open(image_path)
@@ -68,10 +76,7 @@ print('NORMAL SMALEST:: ', min(normal_size))
 print('NORMAL LARGEST:: ', max(normal_size))
 print('PNEUMONIA SMALLEST:: ', min(pneumonia_size))
 print('PNEUMONIA LARGEST:: ', max(pneumonia_size))
-print('Test Normal:: ',count_images(os.path.join(TEST_DIR, 'NORMAL')))
-print('Test Pneumonia:: ', count_images(os.path.join(TEST_DIR, "PNEUMONIA")))
-print('VAl Normal:: ', count_images(os.path.join(VAL_DIR, 'NORMAL')))
-print('Val Pneumonia:: ', count_images(os.path.join(VAL_DIR, 'PNEUMONIA')))
+
 print(img_normal.mode)
 print(img_pneumonia.mode)
 print('NORMAL modes found:: ', set(normal_modes))
