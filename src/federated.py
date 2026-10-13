@@ -4,6 +4,7 @@ from model import PneumoniaCNN
 from prep_data import train_dataset, test_loader
 from torch.utils.data import random_split, DataLoader
 
+MALICIOUS = True
 
 # FedAvg: averages the same layer's weights across all clients, one layer at a time.
 # This is the core "federated averaging" algorithm - combines each client's local
@@ -51,7 +52,7 @@ for round in range(num_rounds):
                 # MALICIOUS CLIENT SIMULATION: client 3 (client_id == 2) trains on
                 # deliberately flipped labels (label-flipping attack), so it learns
                 # the opposite of the correct patterns and sends back corrupted weights
-                if client_id == 2:
+                if MALICIOUS and client_id == 2:
                     labels = 1 - labels
 
                 optimizer.zero_grad()
