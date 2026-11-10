@@ -42,6 +42,8 @@ plt.title('PNEUMONIA')
 print('NORMAL image size:: ', img_normal.size)
 print('PNEUMONIA image size:: ', img_pneumonia.size)
 
+plt.savefig('results/sample_images.png', dpi=300)
+
 plt.show()
 
 normal_size = [] # =============== list of all the sizes of normal pictures

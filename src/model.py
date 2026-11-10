@@ -39,11 +39,11 @@ class PneumoniaCNN(nn.Module):
         self.fc2 = nn.Linear(in_features = 128 , out_features = 2)
         
     def forward(self, x):
-        # x starts as a batch of images: [batch_size, 1, 244, 244]
+        # x starts as a batch of images: [batch_size, 1, 224, 224]
         
         x = self.conv1(x) # detect simple patterns -> [batch, 16, 222, 222]
         x = self.relu(x) # non-linearity , shape unchanged
-        x = self.pool(x) # shrinks size -> [batch, 32, 54, 54]
+        x = self.pool(x) # shrinks size -> [batch, 16, 111, 111]
         
         x = self.conv2(x) # detect more complex patter -> [batch, 32, 109, 109]
         x = self.relu(x)
